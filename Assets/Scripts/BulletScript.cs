@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public class BulletScript : MonoBehaviour
 {
 
     Rigidbody rb;
-    float speed = 20f;
+    float speed = 5f;
     float damage = 20f;
 
     void Start()
@@ -19,7 +18,7 @@ public class BulletScript : MonoBehaviour
         }
         else if (gameObject.CompareTag("BulletS"))
         {
-            rb.AddForce(Vector3.right * 2f);
+            
             StartCoroutine(DestroyBullet(2f));
         }
     }

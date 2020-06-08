@@ -321,6 +321,7 @@ GameObject:
   - component: {fileID: 109657342782304877}
   - component: {fileID: 5369284441981548580}
   - component: {fileID: 4875709839153457995}
+  - component: {fileID: 1257043780}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -387,11 +388,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e224b1feab48c340b9cb6b7bd4d8b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthParticles: {fileID: 3555745060986188812, guid: b98fc6346a1823847938ece98210e97c,
+    type: 3}
   bulletPrefab: {fileID: 3968254821966747950, guid: 313ea9135aa5d7841bc9646f8c9fb4d7,
     type: 3}
+  shotBullet: {fileID: 1678159353975552173, guid: 8b06146e41f75c64e9aaabdeeaa79a4a,
+    type: 3}
+  shotPoint: {fileID: 4454528727383144444}
   firePoint: {fileID: 5704936580195826436}
   health: 0
   speed: 2
+--- !u!95 &1257043780
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4596403338924286636}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4a704984d6274bc4e95ed60f435c6a40, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4790561299296408966
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,7 +955,7 @@ PrefabInstance:
     - target: {fileID: 2903964564610764169, guid: cbab87e2f5421de44862ec3c22e13932,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8011531
+      value: -1.801153
       objectReference: {fileID: 0}
     - target: {fileID: 2903964564610764169, guid: cbab87e2f5421de44862ec3c22e13932,
         type: 3}
@@ -982,6 +1007,12 @@ PrefabInstance:
 --- !u!4 &9085257202840919658 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2903964564610764169, guid: cbab87e2f5421de44862ec3c22e13932,
+    type: 3}
+  m_PrefabInstance: {fileID: 6222185955526579171}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4454528727383144444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7748460124832261151, guid: cbab87e2f5421de44862ec3c22e13932,
     type: 3}
   m_PrefabInstance: {fileID: 6222185955526579171}
   m_PrefabAsset: {fileID: 0}

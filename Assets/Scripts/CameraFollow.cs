@@ -6,7 +6,7 @@ public class CameraFollow : MonoBehaviour
 {
 
     Transform player;
-    [SerializeField] Vector3 offset;
+    [SerializeField] Vector3 offset = new Vector3(0,0,0);
 
     void Start()
     {

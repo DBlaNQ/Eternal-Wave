@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
 
     NavMeshAgent nma;
+
+    Slider slider;
 
     float maxHealth = 0f;
     public float health = 0f;
@@ -15,6 +18,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
+        slider = GetComponentInChildren<Slider>();
         nma = GetComponent<NavMeshAgent>();
         if (gameObject.CompareTag("Zombie"))
         {
@@ -22,6 +26,8 @@ public class EnemyManager : MonoBehaviour
             health = maxHealth;
             damage = 15f;
             speed = 1f;
+            slider.maxValue = maxHealth;
+            slider.value = maxHealth;
         }    
     }
 
@@ -30,6 +36,7 @@ public class EnemyManager : MonoBehaviour
         nma.destination = GameObject.Find("Player").transform.position;
         nma.speed = speed;
 
+        slider.value = health;
         if(health < 0)
         {
             Destroy(gameObject);
