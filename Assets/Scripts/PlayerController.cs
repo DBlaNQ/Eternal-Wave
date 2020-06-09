@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     TextMeshProUGUI currAmmo;
     TextMeshProUGUI ammoPacks;
 
+    GameObject ammoPack = null;
+    GameObject healthPack = null;
     GameObject healthBar;
     [SerializeField] GameObject pauseMenu = null;
     [SerializeField] GameObject healthParticles = null;
@@ -27,13 +29,17 @@ public class PlayerController : MonoBehaviour
 
     float maxHealth = 100f;
     public float health;
-    float healthPacks = 10;
-    int currentAmmo = 25;
-    int ammo = 1;
+    int healthPacks = 0;
     [SerializeField] float speed = 2f;
+
+    int maxAmmo = 25;
+    int currentAmmo = 25;
+    int ammo = 35;
+    int ammoNeeded = 0;
 
     public bool paused = false;
     bool healthPackAvailable = false;
+    bool ammoPackAvailable = false;
     bool allowFire = true;
     bool allowRunning = false;
     bool isRunning = false;
@@ -84,16 +90,26 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        //Gate
+        //Use\Pick
         if(Input.GetKeyDown(KeyCode.E))
         {
             if (isAtGate)
             {
                 gatem.isOpen = !gatem.isOpen;
             }
-            if (healthPackAvailable)
+            else if (healthPackAvailable && healthPack != null)
             {
                 healthPacks += 1;
+                Destroy(healthPack);
+                healthPack = null;
+                healthPackAvailable = false;
+            }
+            else if (ammoPackAvailable && ammoPack != null)
+            {
+                ammo += 25;
+                Destroy(ammoPack);
+                ammoPack = null;
+                ammoPackAvailable = false;
             }
         }
 
@@ -108,7 +124,6 @@ public class PlayerController : MonoBehaviour
         }
 
         //Healing
-        healthBar.GetComponent<HealthBar>().SetHealth(health);
         if (Input.GetKeyDown(KeyCode.H) && healthPacks > 0)
         {
             if (health > maxHealth)
@@ -153,8 +168,10 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
 
         //UI
-        ammoPacks.text = Convert.ToString(ammo);
-        currAmmo.text = Convert.ToString(currentAmmo);
+        healthBar.GetComponent<HealthBar>().SetHealthPacks(healthPacks);
+        healthBar.GetComponent<HealthBar>().SetHealth(health);
+        ammoPacks.text = ammo.ToString();
+        currAmmo.text = currentAmmo.ToString();
     }
 
     private void FixedUpdate()
@@ -185,6 +202,12 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("HealthPack"))
         {
             healthPackAvailable = true;
+            healthPack = other.gameObject;
+        }
+        else if (other.CompareTag("AmmoPack"))
+        {
+            ammoPackAvailable = true;
+            ammoPack = other.gameObject;
         }
     }
 
@@ -197,6 +220,12 @@ public class PlayerController : MonoBehaviour
         else if (other.CompareTag("HealthPack"))
         {
             healthPackAvailable = false;
+            healthPack = null;
+        }
+        else if (other.CompareTag("AmmoPack"))
+        {
+            ammoPackAvailable = false;
+            ammoPack = null;
         }
     }
 
@@ -231,8 +260,18 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         allowFire = true;
-        currentAmmo = 25;
-        ammo -= 1;
+        ammoNeeded = 0;
+        ammoNeeded = (currentAmmo - maxAmmo) * (-1);
+        if (ammo < ammoNeeded)
+        {
+            currentAmmo += ammo;
+            ammo = 0;
+        }
+        else
+        {
+            currentAmmo += ammoNeeded;
+            ammo -= ammoNeeded;
+        }
         isReloading = false;
     }
 }

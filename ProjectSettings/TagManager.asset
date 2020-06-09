@@ -8,6 +8,10 @@ TagManager:
   - Gate
   - Bullet
   - BulletS
+  - AmmoPack
+  - Spawner
+  - HealthPack
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

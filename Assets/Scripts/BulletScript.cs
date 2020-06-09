@@ -6,7 +6,7 @@ public class BulletScript : MonoBehaviour
 {
 
     Rigidbody rb;
-    float speed = 5f;
+    float speed = 25f;
     float damage = 20f;
 
     void Start()
@@ -18,7 +18,6 @@ public class BulletScript : MonoBehaviour
         }
         else if (gameObject.CompareTag("BulletS"))
         {
-            
             StartCoroutine(DestroyBullet(2f));
         }
     }
@@ -29,15 +28,15 @@ public class BulletScript : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (!other.CompareTag("Zombie"))
+        if (collision.collider.CompareTag("Zombie"))
         {
+            collision.collider.GetComponent<EnemyManager>().health -= damage;
             Destroy(gameObject);
         }
         else
         {
-            other.GetComponent<EnemyManager>().health -= damage;
             Destroy(gameObject);
         }
     }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2330638881570496899
+--- !u!1001 &1723968710042906770
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,11 +10,6 @@ PrefabInstance:
     - target: {fileID: -5051130077196189613, guid: 313ea9135aa5d7841bc9646f8c9fb4d7,
         type: 3}
       propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -1782021281473049498, guid: 313ea9135aa5d7841bc9646f8c9fb4d7,
-        type: 3}
-      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -1782021281473049498, guid: 313ea9135aa5d7841bc9646f8c9fb4d7,

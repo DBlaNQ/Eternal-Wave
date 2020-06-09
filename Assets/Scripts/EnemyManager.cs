@@ -43,11 +43,12 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
-            other.GetComponent<PlayerController>().health -= damage;
+            collision.collider.GetComponent<PlayerController>().health -= damage;
+
         }
     }
 }
